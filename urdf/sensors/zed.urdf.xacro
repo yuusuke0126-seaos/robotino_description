@@ -1,0 +1,77 @@
+<?xml version="1.0"?>
+<robot name="sensor_zed" xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <!-- Xacro properties -->
+  <!-- <xacro:property name="zed_cam_px" value="0.0"/> -->
+  <xacro:property name="zed_cam_px" value="0.205"/>
+  <xacro:property name="zed_cam_py" value="0.008"/>
+  <xacro:property name="zed_cam_pz" value="0.495"/>
+  <!-- <xacro:property name="zed_cam_pz" value="0.39"/> -->
+  <xacro:macro name="sensor_zed" params="parent">
+  
+
+  <joint name="camera_rgb_joint" type="fixed">
+    <origin xyz="${zed_cam_px} ${zed_cam_py} ${zed_cam_pz}"
+            rpy="0 0 0"/>
+    <parent link="${parent}"/>
+    <child link="zed_camera_center" />
+  </joint>
+
+  <!-- Camera Center -->
+  <link name="zed_camera_center">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://logiler_description/meshes/sensors/ZEDM.stl" />
+      </geometry>
+      <material name="light_grey">
+        <color rgba="0 0 0 0.9"/>
+      </material>
+    </visual>
+  </link>
+  <!-- Left Camera -->
+  <joint name="zed_left_camera_joint" type="fixed">
+    <parent link="zed_camera_center"/>
+    <child link="zed_left_camera_frame"/>
+    <origin xyz="0 0.03 0" rpy="0 0 0" />
+  </joint>
+
+  <link name="zed_left_camera_frame" />
+
+  <joint name="zed_left_camera_optical_joint" type="fixed">
+    <origin xyz="0 0 0" rpy="-1.57079632679 0.0 -1.57079632679"/>
+    <parent link="zed_left_camera_frame"/>
+    <child link="zed_left_camera_optical_frame"/>
+  </joint>
+
+  <link name="zed_left_camera_optical_frame"/>
+  <!-- Right Camera -->
+  <joint name="zed_right_camera_joint" type="fixed">
+    <parent link="zed_camera_center"/>
+    <child link="zed_right_camera_frame"/>
+    <origin xyz="0 -0.03 0" rpy="0 0 0" />
+  </joint>
+
+  <link name="zed_right_camera_frame" />
+
+  <joint name="zed_right_camera_optical_joint" type="fixed">
+    <origin xyz="0 0 0" rpy="-1.57079632679 0.0 -1.57079632679"/>
+    <parent link="zed_right_camera_frame"/>
+    <child link="zed_right_camera_optical_frame"/>
+  </joint>
+
+  <link name="zed_right_camera_optical_frame"/>
+  <!-- IMU -->
+  <joint name="imu_link_joint" type="fixed">
+    <parent link="zed_camera_center"/>
+    <child link="imu_link"/>
+    <origin xyz="0 0 0" rpy="0 0 0" />
+  </joint>
+  <link name="imu_link" />
+
+    <turtlebot_sim_3dsensor/>
+
+  </xacro:macro>
+
+
+</robot>

@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<robot name="robotino" xmlns:xacro="http://wiki.ros.org/xacro">
+  <xacro:include filename="$(find robotino_description)/urdf/robotino_body.urdf.xacro"/>
+  <xacro:include filename="$(find robotino_description)/urdf/robotino_parts.urdf.xacro"/>
+  <xacro:include filename="$(find robotino_description)/urdf/sensors/zed.urdf.xacro"/>
+  <robotino_body/>
+  <sensor_zed       parent="base_link"/>
+</robot>

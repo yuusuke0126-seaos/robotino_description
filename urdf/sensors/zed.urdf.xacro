@@ -3,9 +3,9 @@
 
   <!-- Xacro properties -->
   <!-- <xacro:property name="zed_cam_px" value="0.0"/> -->
-  <xacro:property name="zed_cam_px" value="0.205"/>
-  <xacro:property name="zed_cam_py" value="0.008"/>
-  <xacro:property name="zed_cam_pz" value="0.495"/>
+  <xacro:property name="zed_cam_px" value="0.235"/>
+  <xacro:property name="zed_cam_py" value="0.0"/>
+  <xacro:property name="zed_cam_pz" value="0.475"/>
   <!-- <xacro:property name="zed_cam_pz" value="0.39"/> -->
   <xacro:macro name="sensor_zed" params="parent">
   
